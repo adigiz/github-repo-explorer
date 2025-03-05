@@ -10,14 +10,14 @@ export interface GitHubRepo {
 }
 
 export const fetchUsers = async (query: string): Promise<GitHubUser[]> => {
-  const response = await fetch(`https://api.github.com/search/users?q=${query}&per_page=5`);
+  const response = await fetch(`${import.meta.env.VITE_GITHUB_API_URL}/search/users?q=${query}&per_page=5`);
   if (!response.ok) throw new Error("Error fetching users");
   const data = await response.json();
   return data.items || [];
 };
 
 export const fetchUserRepos = async (username: string): Promise<GitHubRepo[]> => {
-  const response = await fetch(`https://api.github.com/users/${username}/repos`);
+  const response = await fetch(`${import.meta.env.VITE_GITHUB_API_URL}/users/${username}/repos`);
   if (!response.ok) throw new Error("Error fetching repositories");
   return response.json();
 };

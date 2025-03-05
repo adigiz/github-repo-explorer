@@ -5,6 +5,6 @@ export const useUsers = (query: string) =>
     useQuery({
       queryKey: ["users", query],
       queryFn: () => fetchUsers(query),
-      enabled: !!query, // Prevents fetching on initial render
+      enabled: !!query,
     });
   
