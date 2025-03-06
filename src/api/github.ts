@@ -7,6 +7,8 @@ export interface GitHubRepo {
   id: number;
   name: string;
   html_url: string;
+  description: string | null;
+  stargazers_count: number;
 }
 
 export const fetchUsers = async (query: string): Promise<GitHubUser[]> => {
