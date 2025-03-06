@@ -1,23 +1,20 @@
-import { GitHubRepo } from "@/api/github";
+import { useUserRepos } from "@/hooks/useRepositories";
 
-interface RepoListProps {
-  repos: GitHubRepo[];
-}
+const RepoList = ({ username }: { username: string }) => {
+  const { data: repos, isLoading, error } = useUserRepos(username);
 
-const RepoList = ({ repos }: RepoListProps) => {
+  if (isLoading)
+    return <p className="text-gray-400">Loading repositories...</p>;
+  if (error)
+    return <p className="text-red-500">Failed to load repositories.</p>;
+  if (!repos || repos.length === 0)
+    return <p className="text-gray-400">No repositories found.</p>;
+
   return (
-    <ul className="mt-4 space-y-2">
+    <ul className="space-y-1">
       {repos.map((repo) => (
-        <li
-          key={repo.id}
-          className="p-3 bg-gray-800 rounded-md shadow-md hover:bg-gray-700 transition"
-        >
-          <a
-            href={repo.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
+        <li key={repo.id} className="text-blue-400 hover:underline">
+          <a href={repo.html_url} target="_blank" rel="noopener noreferrer">
             {repo.name}
           </a>
         </li>
