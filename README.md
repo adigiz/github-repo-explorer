@@ -1,54 +1,76 @@
-# React + TypeScript + Vite
+# GitHub Repositories Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **GitHub Repositories Explorer** built with **React, TypeScript, Vite, React Query, and Tailwind CSS**.  
+This app allows users to **search for GitHub users** and view their **repositories, descriptions, and star counts** in an accordion-style UI.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Search for GitHub users  
+- View repositories in an accordion UI  
+- See repository descriptions and star count  
+- Styled with Tailwind CSS for a modern UI  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Installation & Setup
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Clone the Repository
+```sh
+git clone https://github.com/adigiz/github-repositories-explorer.git
+cd github-repositories-explorer
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+### Install Dependencies
+```sh
+npm install
 ```
+
+### Set Up Environment Variables  
+Create a `.env` file by copying the `.env.example` file in the root directory:
+```
+VITE_GITHUB_API_URL=https://api.github.com
+```
+
+### Run the Development Server
+```sh
+npm run dev
+```
+Then, open **http://localhost:5173/** in your browser.
+
+---
+
+## Project Structure
+```
+src
+ ┣ api            # API calls to GitHub
+ ┃ ┣ github.ts    # Fetch users and repositories
+ ┣ components     # Reusable UI components
+ ┃ ┣ SearchBar.tsx
+ ┃ ┣ UserList.tsx
+ ┃ ┣ RepoList.tsx
+ ┣ hooks          # Custom React Query hooks
+ ┃ ┣ useUsers.ts
+ ┃ ┣ useRepositories.ts
+ ┣ pages          # Page-level components
+ ┃ ┣ Home.tsx
+ ┣ App.tsx        # Main app entry
+ ┣ main.tsx       # React and Vite entry
+ ┗ vite.config.ts # Vite configuration
+```
+
+---
+
+## Technologies Used
+
+- Vite - Fast build tool for React  
+- React + TypeScript - Strongly typed UI development  
+- React Query - Efficient API data fetching and caching  
+- Tailwind CSS - Responsive and modern UI styling  
+
+---
+
+## Future Improvements
+- Add unit test
+- Add pagination for repositories  
+- Implement infinite scrolling for user search  
+- Improve error handling for GitHub API rate limits  
